@@ -1,6 +1,6 @@
 # Fallout 4 Terminal Cracker
 
-This is a simple C++ program that helps crack the password in terminal hacking minigames found in Fallout 4. In the game, the player must guess a password by inputting words and their likeness to the correct password is then given, in this tool you provide that score, and it filters the remaining potential passwords.
+This is a simple C++ program (developed in Visual Studio 2022) that helps crack the password in terminal hacking minigames found in Fallout 4. In the game, the player must guess a password by selecting words in the terminal window and the likeness to the correct password is then given, in this tool you provide that score, and it filters the remaining potential passwords until the correct password is found.
 
 ## Features
 
@@ -29,14 +29,12 @@ g++ main.cpp -o fallout_terminal_cracker
 
 ## Example
 
---- FALLOUT 4 TERMINAL CRACKER INITIALIZING ---
+--- FALLOUT 4 TERMINAL CRACKER INITIALIZING ---  
 Enter all words separated by commas: hello,world,test,apple,banana  
 Enter guessed word: hello  
 Enter likeness score (0 - 5): 0  
 Password: banana  
-Press enter to exit  
-
-
+Press enter to exit
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
