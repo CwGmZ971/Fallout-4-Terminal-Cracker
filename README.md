@@ -30,11 +30,11 @@ g++ main.cpp -o fallout_terminal_cracker
 ## Example
 
 --- FALLOUT 4 TERMINAL CRACKER INITIALIZING ---
-Enter all words separated by commas: hello,world,test,apple,banana
-Enter guessed word: hello
-Enter likeness score (0 - 5): 0
-Password: banana
-Press enter to exit
+Enter all words separated by commas: hello,world,test,apple,banana  
+Enter guessed word: hello  
+Enter likeness score (0 - 5): 0  
+Password: banana  
+Press enter to exit  
 
 
 ## License
