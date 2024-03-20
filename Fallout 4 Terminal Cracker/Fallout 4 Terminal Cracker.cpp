@@ -38,11 +38,12 @@ string toLower(const string& str) {
 // Function to get input from the user
 string getStrInput(const string& prompt) {
     string input;
-    while (true) {
+    bool inputIsValid = false;
+    while (!inputIsValid) {
         cout << prompt;
         getline(cin, input);
         if (!input.empty()) {
-            break;
+            inputIsValid = true;
         }
         else {
             cout << "Invalid input. Please try again." << endl;
@@ -56,7 +57,8 @@ int getIntInput(const string& prompt, int max) {
     const int MIN_INPUT_VALUE = 0;
     int value;
     string input;
-    while (true) {
+    bool inputIsValid = false;
+    while (!inputIsValid) {
         cout << prompt;
         getline(cin, input);
         stringstream ss(input);
@@ -65,7 +67,7 @@ int getIntInput(const string& prompt, int max) {
         // 2. End-of-file flag is set on the stringstream (ss.eof())
         // 3. Extracted integer is within the specified range (value >= MIN_INPUT_VALUE && value <= max)
         if (ss >> value && ss.eof() && value >= MIN_INPUT_VALUE && value <= max) {
-            break;
+            inputIsValid = true;
         }
         else {
             cout << "Invalid input. Please enter an integer between " << MIN_INPUT_VALUE << " and " << max << "." << endl;
