@@ -9,7 +9,7 @@ using namespace std;
 // Function to calculate likeness score between two words
 int calculateLikeness(const string& word1, const string& word2) {
     int likeness = 0;
-    for (size_t i = 0; i < word1.length() && i < word2.length(); ++i) {
+    for (size_t i = 0; i < min(word1.length(), word2.length()); ++i) {
         if (word1[i] == word2[i]) {
             likeness++;
         }
@@ -38,29 +38,46 @@ string toLower(const string& str) {
 // Function to get input from the user
 string getStrInput(const string& prompt) {
     string input;
-    cout << prompt;
-    getline(cin, input);
+    while (true) {
+        cout << prompt;
+        getline(cin, input);
+        if (!input.empty()) {
+            break;
+        }
+        else {
+            cout << "Invalid input. Please try again." << endl;
+        }
+    }
     return input;
 }
 
 // Function to validate integer input within a specified range
 int getIntInput(const string& prompt, int max) {
+    const int MIN_INPUT_VALUE = 0;
     int value;
     string input;
     while (true) {
         cout << prompt;
         getline(cin, input);
         stringstream ss(input);
-        if (ss >> value && ss.eof() && value >= 0 && value <= max) {
+        if (ss >> value && ss.eof() && value >= MIN_INPUT_VALUE && value <= max) {
             break;
         }
         else {
-            cout << "Invalid input. Please enter an integer between 0 and " << max << "." << endl;
+            cout << "Invalid input. Please enter an integer between " << MIN_INPUT_VALUE << " and " << max << "." << endl;
         }
     }
     return value;
 }
 
+// Function to display remaining possible words
+void displayRemainingWords(const vector<string>& remainingWords) {
+    cout << "Possible words narrowed down to: ";
+    for (const auto& word : remainingWords) {
+        cout << word << " ";
+    }
+    cout << endl;
+}
 
 int main() {
     cout << "--- FALLOUT 4 TERMINAL CRACKER INITIALIZING ---\n";
@@ -83,10 +100,9 @@ int main() {
             cout << "Guessed word is not in the list of remaining words. Please guess again.\n";
             continue;
         }
-        
-        int max = guessedWord.length();
 
-        int likeness = getIntInput("Enter likeness score (0 - " + to_string(max) + "): ", max);
+        int maxLikeness = guessedWord.length();
+        int likeness = getIntInput("Enter likeness score (0 - " + to_string(maxLikeness) + "): ", maxLikeness);
 
         remainingWords = filterWords(remainingWords, guessedWord, likeness);
 
@@ -95,11 +111,7 @@ int main() {
             break;
         }
         else if (remainingWords.size() != 1) {
-            cout << "Possible words narrowed down to: ";
-            for (const auto& word : remainingWords) {
-                cout << word << " ";
-            }
-            cout << endl;
+            displayRemainingWords(remainingWords);
         }
     }
 
