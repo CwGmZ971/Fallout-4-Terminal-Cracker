@@ -80,7 +80,9 @@ void displayRemainingWords(const vector<string>& remainingWords) {
 }
 
 int main() {
-    cout << "--- FALLOUT 4 TERMINAL CRACKER INITIALIZING ---\n";
+    const string VERSION = "1.1.0";
+    
+    cout << "--- FALLOUT 4 TERMINAL CRACKER v" << VERSION << " INITIALIZING ---\n";
 
     string inputWords = getStrInput("Enter all words separated by commas: ");
     stringstream ss(inputWords);
