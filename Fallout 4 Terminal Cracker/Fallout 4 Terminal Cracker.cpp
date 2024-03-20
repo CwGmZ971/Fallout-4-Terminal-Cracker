@@ -86,7 +86,7 @@ void displayRemainingWords(const vector<string>& remainingWords) {
 }
 
 int main() {
-    const string VERSION = "1.1.0";
+    const string VERSION = "1.1.1";
     
     cout << "--- FALLOUT 4 TERMINAL CRACKER v" << VERSION << " INITIALIZING ---\n";
 
