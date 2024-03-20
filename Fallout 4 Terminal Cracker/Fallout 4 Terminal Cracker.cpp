@@ -53,8 +53,7 @@ string getStrInput(const string& prompt) {
 }
 
 // Function to validate integer input within a specified range
-int getIntInput(const string& prompt, int max) {
-    const int MIN_INPUT_VALUE = 0;
+int getIntInput(const string& prompt, size_t max) {
     int value;
     string input;
     bool inputIsValid = false;
@@ -65,12 +64,12 @@ int getIntInput(const string& prompt, int max) {
         // Check if:
         // 1. Successfully extracted an integer from the stringstream (ss >> value)
         // 2. End-of-file flag is set on the stringstream (ss.eof())
-        // 3. Extracted integer is within the specified range (value >= MIN_INPUT_VALUE && value <= max)
-        if (ss >> value && ss.eof() && value >= MIN_INPUT_VALUE && value <= max) {
+        // 3. Extracted integer is within the specified range (value >= 0 && value <= max)
+        if (ss >> value && ss.eof() && value >= 0 && value <= max) {
             inputIsValid = true;
         }
         else {
-            cout << "Invalid input. Please enter an integer between " << MIN_INPUT_VALUE << " and " << max << "." << endl;
+            cout << "Invalid input. Please enter an integer between 0 and " << max << "." << endl;
         }
     }
     return value;
@@ -109,7 +108,7 @@ int main() {
             continue;
         }
 
-        int maxLikeness = guessedWord.length();
+        size_t maxLikeness = guessedWord.length();
         int likeness = getIntInput("Enter likeness score (0 - " + to_string(maxLikeness) + "): ", maxLikeness);
 
         remainingWords = filterWords(remainingWords, guessedWord, likeness);
