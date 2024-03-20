@@ -60,6 +60,10 @@ int getIntInput(const string& prompt, int max) {
         cout << prompt;
         getline(cin, input);
         stringstream ss(input);
+        // Check if:
+        // 1. Successfully extracted an integer from the stringstream (ss >> value)
+        // 2. End-of-file flag is set on the stringstream (ss.eof())
+        // 3. Extracted integer is within the specified range (value >= MIN_INPUT_VALUE && value <= max)
         if (ss >> value && ss.eof() && value >= MIN_INPUT_VALUE && value <= max) {
             break;
         }
