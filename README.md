@@ -37,7 +37,7 @@ This is a simple C++ program (developed in Visual Studio 2022) that helps you cr
 
 ## Example
 
---- FALLOUT 4 TERMINAL CRACKER INITIALIZING ---  
+--- FALLOUT 4 TERMINAL CRACKER v1.1.1 INITIALIZING ---  
 Enter all words separated by commas: hello,world,test,apple,banana  
 Enter guessed word: hello  
 Enter likeness score (0 - 5): 0  
