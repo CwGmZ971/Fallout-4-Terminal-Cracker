@@ -9,7 +9,7 @@ using namespace std;
 // Function to calculate likeness score between two words
 int calculateLikeness(const string& word1, const string& word2) {
     int likeness = 0;
-    for (size_t i = 0; i < min(word1.length(), word2.length()); ++i) {
+    for (int i = 0; i < min(word1.length(), word2.length()); ++i) {
         if (word1[i] == word2[i]) {
             likeness++;
         }
