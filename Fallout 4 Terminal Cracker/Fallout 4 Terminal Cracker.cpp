@@ -85,8 +85,7 @@ void displayRemainingWords(const vector<string>& remainingWords) {
 }
 
 int main() {
-    const string VERSION = "1.1.1";
-    
+    const string VERSION = "1.2.0";
     cout << "--- FALLOUT 4 TERMINAL CRACKER v" << VERSION << " INITIALIZING ---\n";
 
     string inputWords = getStrInput("Enter all words separated by commas: ");
@@ -101,24 +100,19 @@ int main() {
     while (remainingWords.size() > 1) {
         string guessedWord = toLower(getStrInput("Enter guessed word: "));
 
-        auto wordIter = find(remainingWords.begin(), remainingWords.end(), guessedWord);
+        // Check if guessed word is in the list
+        if (find(remainingWords.begin(), remainingWords.end(), guessedWord) != remainingWords.end()) {
+            int likeness = getIntInput("Enter likeness score (0 - " + to_string(guessedWord.length()) + "): ", guessedWord.length());
+            remainingWords = filterWords(remainingWords, guessedWord, likeness);
 
-        if (wordIter == remainingWords.end()) {
-            cout << "Guessed word is not in the list of remaining words. Please guess again.\n";
-            continue;
-        }
-
-        size_t maxLikeness = guessedWord.length();
-        int likeness = getIntInput("Enter likeness score (0 - " + to_string(maxLikeness) + "): ", maxLikeness);
-
-        remainingWords = filterWords(remainingWords, guessedWord, likeness);
-
-        if (remainingWords.empty()) {
-            cout << "No possible words remaining. Check input or previous guesses." << endl;
-            break;
-        }
-        else if (remainingWords.size() != 1) {
-            displayRemainingWords(remainingWords);
+            // Display remaining words if they are not empty
+            if (!remainingWords.empty()) {
+                displayRemainingWords(remainingWords);
+            } else {
+                cout << "No possible words remaining. Check input or previous guesses." << endl;
+            }
+        } else {
+            cout << "Guessed word is not in the list. Try again.\n";
         }
     }
 
